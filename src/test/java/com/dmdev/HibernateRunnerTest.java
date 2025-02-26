@@ -2,7 +2,6 @@ package com.dmdev;
 
 import com.dmdev.entity.User;
 import org.junit.jupiter.api.Test;
-
 import javax.persistence.Column;
 import javax.persistence.Table;
 import java.lang.reflect.Constructor;
