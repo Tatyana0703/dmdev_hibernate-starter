@@ -41,16 +41,4 @@ public class HibernateRunner {
             session.getTransaction().commit();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
