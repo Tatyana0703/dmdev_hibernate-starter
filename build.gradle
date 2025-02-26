@@ -15,15 +15,16 @@ java {
 }
 
 dependencies {
-    implementation 'org.hibernate:hibernate-core:5.5.6.Final'
-    runtimeOnly 'org.postgresql:postgresql:42.2.23.jre7'
-    compileOnly 'org.projectlombok:lombok:1.18.20'
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    implementation 'org.hibernate:hibernate-core:6.5.3.Final'
+//    runtimeOnly 'org.postgresql:postgresql:42.2.23.jre7'
+    runtimeOnly 'org.postgresql:postgresql:42.7.5'
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.20'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testCompileOnly 'org.projectlombok:lombok:1.18.34'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.2'
 }
 
 test {
