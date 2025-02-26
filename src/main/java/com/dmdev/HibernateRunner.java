@@ -4,7 +4,6 @@ import com.dmdev.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -20,7 +19,7 @@ public class HibernateRunner {
 //        Session
         Configuration configuration = new Configuration();
 //        configuration.setPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy());
-//        configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(User.class);
         configuration.configure();
 
         try (SessionFactory sessionFactory = configuration.buildSessionFactory();
