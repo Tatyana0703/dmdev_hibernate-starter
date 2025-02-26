@@ -4,11 +4,11 @@ import com.dmdev.converter.BirthdayConverter;
 import com.dmdev.entity.Birthday;
 import com.dmdev.entity.Role;
 import com.dmdev.entity.User;
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+//import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -26,7 +26,7 @@ public class HibernateRunner {
 //        configuration.setPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy());
 //        configuration.addAnnotatedClass(User.class);
         configuration.addAttributeConverter(new BirthdayConverter());
-        configuration.registerTypeOverride(new JsonBinaryType());
+//        configuration.registerTypeOverride(JsonBinaryType.INSTANCE);
         configuration.configure();
 
         try (SessionFactory sessionFactory = configuration.buildSessionFactory();
