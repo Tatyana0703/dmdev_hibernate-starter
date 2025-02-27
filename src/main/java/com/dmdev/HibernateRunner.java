@@ -4,7 +4,6 @@ import com.dmdev.entity.User;
 import com.dmdev.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import java.sql.SQLException;
 
 public class HibernateRunner {
