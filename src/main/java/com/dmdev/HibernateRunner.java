@@ -36,23 +36,9 @@ public class HibernateRunner {
                 Transaction transaction = session1.beginTransaction();
 
                 User user1 = session1.get(User.class, 1L);
-//                session1.save(company);
-//                session1.save(user);
 
                 session1.getTransaction().commit();
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
