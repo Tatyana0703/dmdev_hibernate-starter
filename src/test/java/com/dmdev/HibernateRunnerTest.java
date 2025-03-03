@@ -28,7 +28,7 @@ class HibernateRunnerTest {
         @Cleanup var session = sessionFactory.openSession();
         session.beginTransaction();
 
-        var company = session.get(Company.class, 1);
+        var company = session.get(Company.class, 4);
         System.out.println(company.getUsers());
 
         session.getTransaction().commit();
