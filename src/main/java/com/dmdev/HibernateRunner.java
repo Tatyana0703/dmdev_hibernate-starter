@@ -35,22 +35,13 @@ public class HibernateRunner {
             try (session1) {
                 Transaction transaction = session1.beginTransaction();
 
-                session1.save(user);
+                User user1 = session1.get(User.class, 3L);//в PersistentContext добавляется сущность user1
+                Company company1 = user1.getCompany();//в PersistentContext добавляется сущность company1
+                session1.evict(user1);//удаляем из PersistentContext сущность user1, в нем остается только сущность company1
+//                session1.save(user);
 
                 session1.getTransaction().commit();
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
