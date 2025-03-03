@@ -36,7 +36,7 @@ public class HibernateRunner {
             try (session1) {
                 Transaction transaction = session1.beginTransaction();
 
-                User user1 = session1.get(User.class, 1L);
+                User user1 = session1.get(User.class, 3L);
                 Company company1 = user1.getCompany();
                 String name = company1.getName();
 //                session1.save(company);
@@ -47,16 +47,4 @@ public class HibernateRunner {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
