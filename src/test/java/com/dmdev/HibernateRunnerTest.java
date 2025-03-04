@@ -1,6 +1,7 @@
 package com.dmdev;
 
 import com.dmdev.entity.Company;
+import com.dmdev.entity.Profile;
 import com.dmdev.entity.User;
 import com.dmdev.util.HibernateUtil;
 import lombok.Cleanup;
@@ -29,7 +30,7 @@ class HibernateRunnerTest {
              var session = sessionFactory.openSession()) {
             session.beginTransaction();
 
-            var user = session.get(User.class, 9L);
+            var user = session.get(User.class, 6L);
             System.out.println();
 
 //            var user = User.builder()
