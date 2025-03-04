@@ -34,7 +34,7 @@ public class Company {
     private String name;
 
     @Builder.Default
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "company", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<User> users = new HashSet<>();
 
     public void addUser(User user) {

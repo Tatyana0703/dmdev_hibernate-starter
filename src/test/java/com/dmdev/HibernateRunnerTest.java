@@ -29,8 +29,8 @@ class HibernateRunnerTest {
              var session = sessionFactory.openSession()) {
             session.beginTransaction();
 
-            Company company = session.getReference(Company.class, 1);
-            company.getUsers().removeIf(user -> user.getId().equals(7L));
+            Company company = session.getReference(Company.class, 4);
+            company.getUsers().removeIf(user -> user.getId().equals(4L));
 
             session.getTransaction().commit();
         }
