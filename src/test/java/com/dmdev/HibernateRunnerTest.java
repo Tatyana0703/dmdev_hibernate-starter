@@ -33,7 +33,7 @@ class HibernateRunnerTest {
             session.beginTransaction();
 
             var user = session.get(User.class, 10L);
-            var chat = session.get(Chat.class, 1L);
+            var chat = session.get(Chat.class, 2L);
 
             var userChat = UserChat.builder()
                     .createdAt(Instant.now())

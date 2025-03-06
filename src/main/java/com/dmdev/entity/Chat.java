@@ -19,7 +19,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "name")
+//@EqualsAndHashCode(of = "name")
 @ToString(exclude = "userChats")
 @Builder
 @Entity
