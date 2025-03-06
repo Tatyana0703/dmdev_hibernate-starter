@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.OrderBy;
 import org.hibernate.annotations.SortNatural;
 
 import javax.persistence.CascadeType;
@@ -42,9 +43,9 @@ public class Company {
 
     @Builder.Default
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
-//    @OrderBy(clause = "username DESC, lastname ASC")
+    @OrderBy(clause = "username DESC, lastname ASC")
 //    @OrderBy("personalInfo.firstname")
-    @OrderColumn(name = "id")
+//    @OrderColumn(name = "id")
     @SortNatural
 //    @SortComparator()
     private SortedSet<User> users = new TreeSet<>();

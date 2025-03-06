@@ -32,7 +32,7 @@ class HibernateRunnerTest {
              var session = sessionFactory.openSession()) {
             session.beginTransaction();
 
-            var company = session.get(Company.class, 1);
+            var company = session.get(Company.class, 4);
 //            company.getLocales().add(LocaleInfo.of("ru", "Описание на русском"));
 //            company.getLocales().add(LocaleInfo.of("en", "English description"));
 //            System.out.println(company.getLocales());
