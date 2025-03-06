@@ -1,9 +1,6 @@
 package com.dmdev;
 
-import com.dmdev.entity.Chat;
-import com.dmdev.entity.Company;
-import com.dmdev.entity.User;
-import com.dmdev.entity.UserChat;
+import com.dmdev.entity.*;
 import com.dmdev.util.HibernateUtil;
 import lombok.Cleanup;
 import org.hibernate.Hibernate;
@@ -32,9 +29,9 @@ class HibernateRunnerTest {
              var session = sessionFactory.openSession()) {
             session.beginTransaction();
 
-            var company = session.get(Company.class, 1);
+            var company = session.get(Company.class, 4);
 //            company.getLocales().add(LocaleInfo.of("ru", "Описание на русском"));
-//            company.getLocales().add(LocaleInfo.of("en", "English description"));
+//             company.getLocales().add(LocaleInfo.of("en", "English description"));
             System.out.println(company.getLocales());
 
             session.getTransaction().commit();

@@ -45,10 +45,10 @@ public class Company {
     @Builder.Default
     @ElementCollection
     @CollectionTable(name = "company_locale", joinColumns = @JoinColumn(name = "company_id"))
-//    @AttributeOverride(name = "lang", column = @Column(name = "language"))
-//    private List<LocaleInfo> locales = new ArrayList<>();
-    @Column(name = "description")
-    private List<String> locales = new ArrayList<>();
+//    @AttributeOverride(name = "lang", column = @Column(name = "language"))    //  для отличающихся названий столбца и поля в сущности
+    private List<LocaleInfo> locales = new ArrayList<>();
+//    @Column(name = "description")
+//    private List<String> locales = new ArrayList<>();
 
     public void addUser(User user) {
         users.add(user);
