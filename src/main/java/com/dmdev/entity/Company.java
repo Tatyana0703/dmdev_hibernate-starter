@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.SortNatural;
-
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -42,7 +41,7 @@ public class Company {
 
     @Builder.Default
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
-    @MapKey(name = "username")
+    @MapKey(name = "username")  //  поле username уникально, поэтому его можно использваоть как ключ в мапе
     @SortNatural
     private Map<String, User> users = new TreeMap<>();
 
