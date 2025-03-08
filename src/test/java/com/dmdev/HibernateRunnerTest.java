@@ -34,7 +34,7 @@ class HibernateRunnerTest {
             session.beginTransaction();
 
             var com = Company.builder()
-                    .name("Google")
+                    .name("Google2")
                     .build();
             session.save(com);
 
