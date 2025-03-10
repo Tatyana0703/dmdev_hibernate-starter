@@ -7,12 +7,10 @@ import com.dmdev.entity.Manager;
 import com.dmdev.entity.Programmer;
 import com.dmdev.entity.User;
 import com.dmdev.entity.UserChat;
-import com.dmdev.util.HibernateTestUtil;
 import com.dmdev.util.HibernateUtil;
 import lombok.Cleanup;
 import org.hibernate.Hibernate;
 import org.junit.jupiter.api.Test;
-
 import javax.persistence.Column;
 import javax.persistence.Table;
 import java.lang.reflect.Constructor;
@@ -31,7 +29,7 @@ class HibernateRunnerTest {
 
     @Test
     void checkH2() {
-        try (var sessionFactory = HibernateTestUtil.buildSessionFactory();
+        try (var sessionFactory = HibernateUtil.buildSessionFactory();
              var session = sessionFactory.openSession()) {
             session.beginTransaction();
 
