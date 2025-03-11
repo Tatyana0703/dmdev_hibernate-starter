@@ -4,7 +4,6 @@ import com.dmdev.entity.Chat;
 import com.dmdev.entity.Company;
 import com.dmdev.entity.User;
 import com.dmdev.entity.UserChat;
-import com.dmdev.util.HibernateTestUtil;
 import com.dmdev.util.HibernateUtil;
 import lombok.Cleanup;
 import org.hibernate.Hibernate;
@@ -28,7 +27,7 @@ class HibernateRunnerTest {
 
     @Test
     void checkHql() {
-        try (var sessionFactory = HibernateTestUtil.buildSessionFactory();
+        try (var sessionFactory = HibernateUtil.buildSessionFactory();
              var session = sessionFactory.openSession()) {
             session.beginTransaction();
 
@@ -52,7 +51,7 @@ class HibernateRunnerTest {
 
     @Test
     void localeInfo() {
-        try (var sessionFactory = HibernateTestUtil.buildSessionFactory();
+        try (var sessionFactory = HibernateUtil.buildSessionFactory();
              var session = sessionFactory.openSession()) {
             session.beginTransaction();
 
