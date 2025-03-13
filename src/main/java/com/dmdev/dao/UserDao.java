@@ -11,7 +11,6 @@ import com.dmdev.entity.User_;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.hibernate.Session;
-
 import javax.persistence.Tuple;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
@@ -95,7 +94,7 @@ public class UserDao {
         var cb = session.getCriteriaBuilder();
         var criteria = cb.createQuery(User.class);
         var company = criteria.from(Company.class);
-        var users = company.join(Company_.users);
+        var users = company.join(Company_.users, JoinType.INNER);
 
         criteria.select(users).where(
                 cb.equal(company.get(Company_.name), companyName)
@@ -121,8 +120,8 @@ public class UserDao {
 
         var criteria = cb.createQuery(Payment.class);
         var payment = criteria.from(Payment.class);
-        var user = payment.join(Payment_.receiver);
-        var company = user.join(User_.company);
+        var user = payment.join(Payment_.receiver, JoinType.INNER);
+        var company = user.join(User_.company, JoinType.INNER);
 
         criteria.select(payment).where(
                         cb.equal(company.get(Company_.name), companyName)
@@ -152,7 +151,7 @@ public class UserDao {
         var criteria = cb.createQuery(Double.class);
 
         var payment = criteria.from(Payment.class);
-        var user = payment.join(Payment_.receiver);
+        var user = payment.join(Payment_.receiver, JoinType.INNER);
 
         List<Predicate> predicates = new ArrayList<>();
         if (firstName != null) {
@@ -185,7 +184,7 @@ public class UserDao {
         var criteria = cb.createQuery(CompanyDto.class);
         var company = criteria.from(Company.class);
         var user = company.join(Company_.users, JoinType.INNER);
-        var payment = user.join(User_.payments);
+        var payment = user.join(User_.payments, JoinType.INNER);
 
         criteria.select(
                         cb.construct(CompanyDto.class,
@@ -215,7 +214,7 @@ public class UserDao {
 
         var criteria = cb.createQuery(Tuple.class);
         var user = criteria.from(User.class);
-        var payment = user.join(User_.payments);
+        var payment = user.join(User_.payments, JoinType.INNER);
 
         var subquery = criteria.subquery(Double.class);
         var paymentSubquery = subquery.from(Payment.class);
