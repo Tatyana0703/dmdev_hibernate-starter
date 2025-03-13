@@ -4,13 +4,11 @@ import com.dmdev.entity.Chat;
 import com.dmdev.entity.Company;
 import com.dmdev.entity.User;
 import com.dmdev.entity.UserChat;
-import com.dmdev.util.HibernateTestUtil;
 import com.dmdev.util.HibernateUtil;
 import lombok.Cleanup;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.QueryHints;
 import org.junit.jupiter.api.Test;
-
 import javax.persistence.Column;
 import javax.persistence.FlushModeType;
 import javax.persistence.Table;
@@ -22,7 +20,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
-
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.joining;
 
@@ -30,7 +27,7 @@ class HibernateRunnerTest {
 
     @Test
     void checkHql() {
-        try (var sessionFactory = HibernateTestUtil.buildSessionFactory();
+        try (var sessionFactory = HibernateUtil.buildSessionFactory();
              var session = sessionFactory.openSession()) {
             session.beginTransaction();
 
@@ -58,7 +55,7 @@ class HibernateRunnerTest {
 
     @Test
     void localeInfo() {
-        try (var sessionFactory = HibernateTestUtil.buildSessionFactory();
+        try (var sessionFactory = HibernateUtil.buildSessionFactory();
              var session = sessionFactory.openSession()) {
             session.beginTransaction();
 

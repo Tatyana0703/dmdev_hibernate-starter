@@ -3,7 +3,7 @@ package com.dmdev.dao;
 import com.dmdev.dto.CompanyDto;
 import com.dmdev.entity.Payment;
 import com.dmdev.entity.User;
-import com.dmdev.util.HibernateTestUtil;
+import com.dmdev.util.HibernateUtil;
 import com.dmdev.util.TestDataImporter;
 import lombok.Cleanup;
 import org.hibernate.Session;
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 @TestInstance(PER_CLASS)
 class UserDaoTest {
 
-    private final SessionFactory sessionFactory = HibernateTestUtil.buildSessionFactory();
+    private final SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
     private final UserDao userDao = UserDao.getInstance();
 
     @BeforeAll
