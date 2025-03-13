@@ -3,7 +3,7 @@ package com.dmdev.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.time.Instant;
 

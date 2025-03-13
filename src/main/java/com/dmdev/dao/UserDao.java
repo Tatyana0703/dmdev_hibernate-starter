@@ -7,7 +7,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.hibernate.Session;
 
-import javax.persistence.Tuple;
+import jakarta.persistence.Tuple;
 import java.util.Collections;
 import java.util.List;
 

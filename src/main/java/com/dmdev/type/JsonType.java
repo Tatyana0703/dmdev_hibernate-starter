@@ -12,8 +12,8 @@ import java.sql.SQLException;
 public class JsonType implements UserType {
 
     @Override
-    public int[] sqlTypes() {
-        return new int[0];
+    public int getSqlType() {
+        return 0;
     }
 
     @Override
@@ -22,27 +22,27 @@ public class JsonType implements UserType {
     }
 
     @Override
-    public boolean equals(Object x, Object y) throws HibernateException {
+    public boolean equals(Object o, Object j1) {
         return false;
     }
 
     @Override
-    public int hashCode(Object x) throws HibernateException {
+    public int hashCode(Object o) {
         return 0;
     }
 
     @Override
-    public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
+    public Object nullSafeGet(ResultSet resultSet, int i, SharedSessionContractImplementor sharedSessionContractImplementor, Object o) throws SQLException {
         return null;
     }
 
     @Override
-    public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session) throws HibernateException, SQLException {
+    public void nullSafeSet(PreparedStatement preparedStatement, Object o, int i, SharedSessionContractImplementor sharedSessionContractImplementor) throws SQLException {
 
     }
 
     @Override
-    public Object deepCopy(Object value) throws HibernateException {
+    public Object deepCopy(Object o) {
         return null;
     }
 
@@ -52,17 +52,12 @@ public class JsonType implements UserType {
     }
 
     @Override
-    public Serializable disassemble(Object value) throws HibernateException {
+    public Serializable disassemble(Object o) {
         return null;
     }
 
     @Override
-    public Object assemble(Serializable cached, Object owner) throws HibernateException {
-        return null;
-    }
-
-    @Override
-    public Object replace(Object original, Object target, Object owner) throws HibernateException {
+    public Object assemble(Serializable serializable, Object o) {
         return null;
     }
 }

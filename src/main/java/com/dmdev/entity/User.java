@@ -1,6 +1,6 @@
 package com.dmdev.entity;
 
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+//import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,26 +8,27 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
+//import org.hibernate.annotations.TypeDef;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 
 import static com.dmdev.util.StringUtils.SPACE;
 
@@ -43,7 +44,7 @@ import static com.dmdev.util.StringUtils.SPACE;
 @Builder
 @Entity
 @Table(name = "users", schema = "public")
-@TypeDef(name = "dmdev", typeClass = JsonBinaryType.class)
+//@TypeDef(name = "dmdev", typeClass = JsonBinaryType.class)
 public class User implements Comparable<User>, BaseEntity<Long> {
 
     @Id
@@ -56,7 +57,7 @@ public class User implements Comparable<User>, BaseEntity<Long> {
     @Column(unique = true)
     private String username;
 
-    @Type(type = "dmdev")
+    @Type(JsonBinaryType.class)
     private String info;
 
     @Enumerated(EnumType.STRING)

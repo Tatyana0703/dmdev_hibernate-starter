@@ -2,7 +2,8 @@ package com.dmdev.util;
 
 import com.dmdev.converter.BirthdayConverter;
 import com.dmdev.entity.User;
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+//import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import lombok.experimental.UtilityClass;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy;
@@ -23,7 +24,7 @@ public class HibernateUtil {
         configuration.setPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy());
         configuration.addAnnotatedClass(User.class);
         configuration.addAttributeConverter(new BirthdayConverter());
-        configuration.registerTypeOverride(new JsonBinaryType());
+//        configuration.registerTypeOverride(new JsonBinaryType()); //регистрация нужна только для hibernate 5, для hibernate 6 регистрация не нужна
         return configuration;
     }
 }
