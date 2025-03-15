@@ -19,8 +19,8 @@ sourceSets {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_16
-    targetCompatibility = JavaVersion.VERSION_16
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 configurations {
@@ -35,9 +35,12 @@ dependencies {
 
 //    annotationProcessor 'org.hibernate:hibernate-jpamodelgen:5.5.7.Final'
 
-    implementation 'javax.annotation:javax.annotation-api:1.3.2'
-    implementation 'com.querydsl:querydsl-jpa:5.0.0'
-    annotationProcessor 'com.querydsl:querydsl-apt:5.0.0'
+//    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+//    implementation 'com.querydsl:querydsl-jpa:5.0.0'
+//    annotationProcessor 'com.querydsl:querydsl-apt:5.0.0'
+    implementation 'com.querydsl:querydsl-jpa:5.1.0'
+    implementation 'com.querydsl:querydsl-apt:5.1.0'
+
 
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
@@ -58,7 +61,7 @@ querydsl {
 }
 
 compileQuerydsl {
-    enabled = false
+//    enabled = false
     options.annotationProcessorPath = configurations.querydsl
 }
 //compileQuerydsl.dependsOn(clean)
