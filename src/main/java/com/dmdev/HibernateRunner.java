@@ -5,7 +5,6 @@ import com.dmdev.util.HibernateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import java.sql.SQLException;
 
 @Slf4j
@@ -16,9 +15,6 @@ public class HibernateRunner {
              Session session = sessionFactory.openSession()) {
             session.beginTransaction();
 
-//            var user = session.get(User.class, 1L);
-//            System.out.println(user.getPayments().size());
-//            System.out.println(user.getCompany().getName());
             var users = session.createQuery("select u from User u", User.class)
                     .list();
             users.forEach(user -> System.out.println(user.getPayments().size()));
@@ -27,16 +23,4 @@ public class HibernateRunner {
             session.getTransaction().commit();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
