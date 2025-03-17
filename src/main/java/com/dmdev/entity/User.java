@@ -64,7 +64,6 @@ public class User implements Comparable<User>, BaseEntity<Long> {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-
 //    @OneToOne(
 //            mappedBy = "user",
 //            cascade = CascadeType.ALL,
