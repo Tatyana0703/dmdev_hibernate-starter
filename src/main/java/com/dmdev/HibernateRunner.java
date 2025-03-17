@@ -2,16 +2,20 @@ package com.dmdev;
 
 import com.dmdev.entity.User;
 import com.dmdev.util.HibernateUtil;
+import com.dmdev.util.TestDataImporter;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import java.sql.SQLException;
 
 @Slf4j
 public class HibernateRunner {
 
     public static void main(String[] args) throws SQLException {
+//        try (SessionFactory sessionFactory = HibernateUtil.buildSessionFactory()) {
+//            TestDataImporter.importData(sessionFactory);
+//        }
+
         try (SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
              Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -24,17 +28,6 @@ public class HibernateRunner {
 
             session.getTransaction().commit();
         }
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
