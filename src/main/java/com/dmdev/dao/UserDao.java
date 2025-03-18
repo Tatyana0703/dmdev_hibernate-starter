@@ -88,6 +88,40 @@ public class UserDao {
      * Возвращает все выплаты, полученные сотрудниками компании с указанными именем,
      * упорядоченные по имени сотрудника, а затем по размеру выплаты
      */
+    public List<Payment> findAllPaymentsByCompanyName_(Session session, String companyName) {
+//        return session.createQuery("select p from Payment p " +
+//                        "join p.receiver u " +
+//                        "join u.company c " +
+//                        "where c.name = :companyName " +
+//                        "order by u.personalInfo.firstname, p.amount", Payment.class)
+//                .setParameter("companyName", companyName)
+//                .list();
+
+        var cb = session.getCriteriaBuilder();
+
+        var criteria = cb.createQuery(Payment.class);
+        var payment = criteria.from(Payment.class);
+        var user = payment.join("receiver");
+        payment.fetch("receiver");
+        var company = user.join("company");
+
+        criteria.select(payment).where(
+                        cb.equal(company.get("name"), companyName)
+                )
+                .orderBy(
+                        cb.asc(user.get("personalInfo").get("firstname")),
+                        cb.asc(payment.get("amount"))
+                );
+
+        return session.createQuery(criteria)
+                .list();
+    }
+
+
+    /**
+     * Возвращает все выплаты, полученные сотрудниками компании с указанными именем,
+     * упорядоченные по имени сотрудника, а затем по размеру выплаты
+     */
     public List<Payment> findAllPaymentsByCompanyName(Session session, String companyName) {
 //        return session.createQuery("select p from Payment p " +
 //                        "join p.receiver u " +
