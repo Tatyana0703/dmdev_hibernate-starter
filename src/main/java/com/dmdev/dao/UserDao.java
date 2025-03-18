@@ -4,11 +4,13 @@ import com.dmdev.dto.PaymentFilter;
 import com.dmdev.entity.Payment;
 import com.dmdev.entity.User;
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQuery;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.dmdev.entity.QCompany.company;
@@ -107,6 +109,35 @@ public class UserDao {
                 .fetch();
     }
 
+    //некрасивая реализация
+    /**
+     * Возвращает среднюю зарплату сотрудника с указанными именем и фамилией
+     */
+    public Double findAveragePaymentAmountByFirstAndLastNames__(Session session, PaymentFilter filter) {
+//        return session.createQuery("select avg(p.amount) from Payment p " +
+//                        "join p.receiver u " +
+//                        "where u.personalInfo.firstname = :firstName " +
+//                        "   and u.personalInfo.lastname = :lastName", Double.class)
+//                .setParameter("firstName", firstName)
+//                .setParameter("lastName", lastName)
+//                .uniqueResult();
+
+        List<Predicate> predicates = new ArrayList<>();
+        if (filter.getFirstName() != null) {
+            predicates.add(user.personalInfo.firstname.eq(filter.getFirstName()));
+        }
+        if (filter.getLastName() != null) {
+            predicates.add(user.personalInfo.lastname.eq(filter.getLastName()));
+        }
+
+        return new JPAQuery<Double>(session)
+                .select(payment.amount.avg())
+                .from(payment)
+                .join(payment.receiver, user)
+                .where(predicates.toArray(Predicate[]::new))
+                .fetchOne();
+    }
+
     /**
      * Возвращает среднюю зарплату сотрудника с указанными именем и фамилией
      */
@@ -118,13 +149,7 @@ public class UserDao {
 //                .setParameter("firstName", firstName)
 //                .setParameter("lastName", lastName)
 //                .uniqueResult();
-//        List<Predicate> predicates = new ArrayList<>();
-//        if (filter.getFirstName() != null) {
-//            predicates.add(user.personalInfo.firstname.eq(filter.getFirstName()));
-//        }
-//        if (filter.getLastName() != null) {
-//            predicates.add(user.personalInfo.lastname.eq(filter.getLastName()));
-//        }
+
         var predicate = QPredicate.builder()
                 .add(filter.getFirstName(), user.personalInfo.firstname::eq)
                 .add(filter.getLastName(), user.personalInfo.lastname::eq)
