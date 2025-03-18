@@ -36,6 +36,13 @@ import java.util.Set;
 
 import static com.dmdev.util.StringUtils.SPACE;
 
+//@NamedEntityGraph(
+//        name = "WithCompanyAndChat",
+//        attributeNodes = {
+//                @NamedAttributeNode("company"),
+//                @NamedAttributeNode("userChats")
+//        }
+//)
 @NamedEntityGraph(
         name = "WithCompanyAndChat",
         attributeNodes = {
@@ -100,7 +107,7 @@ public class User implements Comparable<User>, BaseEntity<Long> {
 
     @Builder.Default
     @OneToMany(mappedBy = "user")
-    private Set<UserChat> userChats = new HashSet<>();
+    private List<UserChat> userChats = new ArrayList<>();
 
     @Builder.Default
 //    @BatchSize(size = 3)
