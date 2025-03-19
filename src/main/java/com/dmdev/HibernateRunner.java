@@ -14,6 +14,20 @@ import java.sql.SQLException;
 @Slf4j
 public class HibernateRunner {
 
+//    public static void main(String[] args) throws SQLException {
+//        try (SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
+//             Session session = sessionFactory.openSession()) {
+//            TestDataImporter.importData(sessionFactory);
+//
+//            session.beginTransaction();
+//
+//            var payment = session.find(Payment.class, 1L, LockModeType.OPTIMISTIC);
+//            payment.setAmount(payment.getAmount() + 10);
+//
+//            session.getTransaction().commit();
+//        }
+//    }
+
     @Transactional
     public static void main(String[] args) throws SQLException {
         try (SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
