@@ -7,12 +7,29 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import javax.persistence.LockModeType;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
 
 @Slf4j
 public class HibernateRunner {
 
+//    //тестируем @OptimisticLocking(type = OptimisticLockType.ALL)
+//    public static void main(String[] args) throws SQLException {
+//        try (SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
+//             Session session = sessionFactory.openSession()) {
+//            TestDataImporter.importData(sessionFactory);
+//
+//            session.beginTransaction();
+//
+//            var payment = session.find(Payment.class, 1L/*, LockModeType.OPTIMISTIC*/);
+//            payment.setAmount(payment.getAmount() + 10);
+//
+//            session.getTransaction().commit();
+//        }
+//    }
+
+    //тестирование OptimisticLockException
     @Transactional
     public static void main(String[] args) throws SQLException {
         try (SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
