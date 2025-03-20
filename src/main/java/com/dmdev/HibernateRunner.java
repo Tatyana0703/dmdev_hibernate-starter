@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import javax.persistence.LockModeType;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
+import java.util.Map;
 
 @Slf4j
 public class HibernateRunner {
@@ -25,7 +26,8 @@ public class HibernateRunner {
             session1.beginTransaction();
 
 //            session.createQuery("select p from Payment p", Payment.class)
-//                    .setLockMode(LockModeType.PESSIMISTIC_FORCE_INCREMENT)
+//                    .setLockMode(LockModeType.PESSIMISTIC_READ)
+//                    .setTimeout()
 //                    .setHint("javax.persistence.lock.timeout", 5000)
 //                    .list();
 
