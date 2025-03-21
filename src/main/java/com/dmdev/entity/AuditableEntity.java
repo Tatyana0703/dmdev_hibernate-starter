@@ -20,15 +20,15 @@ public abstract class AuditableEntity<T extends Serializable> implements BaseEnt
     private Instant updatedAt;
     private String updatedBy;
 
-    @PrePersist
-    public void prePersist() {
-        setCreatedAt(Instant.now());
-//        setCreatedBy(SecurityContext.getUser());
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        setUpdatedAt(Instant.now());
-//        setUpdatedBy(SecurityContext.getUser());
-    }
+//    @PrePersist
+//    public void prePersist() {
+//        setCreatedAt(Instant.now());
+////        setCreatedBy(SecurityContext.getUser());
+//    }
+//
+//    @PreUpdate
+//    public void preUpdate() {
+//        setUpdatedAt(Instant.now());
+////        setUpdatedBy(SecurityContext.getUser());
+//    }
 }

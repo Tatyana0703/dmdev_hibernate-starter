@@ -5,15 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Version;
+import javax.persistence.*;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -37,4 +30,14 @@ public class Payment extends AuditableEntity<Long> {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "receiver_id")
     private User receiver;
+
+//    @PrePersist
+//    public void prePersist () {
+//        setCreatedAt(Instant.now());
+//    }
+//
+//    @PreUpdate
+//    public void preUpdate () {
+//        setUpdatedAt(Instant.now());
+//    }
 }
