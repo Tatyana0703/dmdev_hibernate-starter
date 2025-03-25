@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,6 +24,7 @@ import javax.persistence.Version;
 @Entity
 //@OptimisticLocking(type = OptimisticLockType.ALL)
 //@DynamicUpdate
+//@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
 @Audited
 public class Payment extends AuditableEntity<Long> {
 
