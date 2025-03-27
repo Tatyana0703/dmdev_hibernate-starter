@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.SessionFactory;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +39,11 @@ public abstract class RepositoryBase<K extends Serializable, E extends BaseEntit
     @Override
     public Optional<E> findById(K id) {
         @Cleanup var session = sessionFactory.openSession();
+        var type = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+        Class<E> myclazz = (Class) type;
+
         return Optional.ofNullable(session.find(clazz, id));
+//        return Optional.ofNullable(session.find(myclazz, id));
     }
 
     @Override
