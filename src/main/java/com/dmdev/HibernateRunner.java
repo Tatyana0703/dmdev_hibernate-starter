@@ -16,8 +16,10 @@ public class HibernateRunner {
     @Transactional
     public static void main(String[] args) throws SQLException {
         try (SessionFactory sessionFactory = HibernateUtil.buildSessionFactory()) {
+//            var session = sessionFactory.getCurrentSession(); //так работает для ОДНОпоточности
+
             var session = (Session) Proxy.newProxyInstance(SessionFactory.class.getClassLoader(), new Class[]{Session.class},
-                    (proxy, method, args1) -> method.invoke(sessionFactory.getCurrentSession(), args1));
+                    (proxy, method, args1) -> method.invoke(sessionFactory.getCurrentSession(), args1));  //так работает для МНОГОпоточности
             session.beginTransaction();
 
             var paymentRepository = new PaymentRepository(session);
@@ -27,6 +29,4 @@ public class HibernateRunner {
             session.getTransaction().commit();
         }
     }
-
-
 }
