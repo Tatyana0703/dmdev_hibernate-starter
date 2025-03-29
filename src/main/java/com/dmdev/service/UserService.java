@@ -7,6 +7,7 @@ import com.dmdev.entity.User;
 import com.dmdev.mapper.Mapper;
 import com.dmdev.mapper.UserCreateMapper;
 import com.dmdev.mapper.UserReadMapper;
+import com.dmdev.validation.UpdateCheck;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.graph.GraphSemantic;
 
@@ -29,6 +30,7 @@ public class UserService {
         var validatorFactory = Validation.buildDefaultValidatorFactory();
         var validator = validatorFactory.getValidator();
         var validationResult = validator.validate(userDto);
+//        var validationResult = validator.validate(userDto, UpdateCheck.class);
         if (!validationResult.isEmpty()) {
             throw new ConstraintViolationException(validationResult);
         }
