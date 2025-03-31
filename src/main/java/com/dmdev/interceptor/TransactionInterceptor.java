@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import net.bytebuddy.implementation.bind.annotation.Origin;
 import net.bytebuddy.implementation.bind.annotation.RuntimeType;
 import net.bytebuddy.implementation.bind.annotation.SuperCall;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
@@ -14,7 +15,8 @@ import java.util.concurrent.Callable;
 @RequiredArgsConstructor
 public class TransactionInterceptor {
 
-    private final SessionFactory sessionFactory;
+//    private final SessionFactory sessionFactory;
+    private final Session session;    //так надо для многопоточности
 
     // findByid -> saveCompany -> saveLocales
     @RuntimeType
@@ -22,7 +24,8 @@ public class TransactionInterceptor {
         Transaction transaction = null;
         boolean transactionStarted = false;
         if (method.isAnnotationPresent(Transactional.class)) {
-            transaction = sessionFactory.getCurrentSession().getTransaction();
+//            transaction = sessionFactory.getCurrentSession().getTransaction();
+            transaction = session.getTransaction();     //так надо для многопоточности
             if (!transaction.isActive()) {
                 transaction.begin();
                 transactionStarted = true;

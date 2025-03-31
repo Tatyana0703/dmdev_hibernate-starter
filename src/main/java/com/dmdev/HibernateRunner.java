@@ -23,6 +23,7 @@ import javax.transaction.Transactional;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 @Slf4j
 public class HibernateRunner {
@@ -43,7 +44,8 @@ public class HibernateRunner {
             var userRepository = new UserRepository(session);
             var paymentRepository = new PaymentRepository(session);
 //            var userService = new UserService(userRepository, userReadMapper, userCreateMapper);
-            var transactionInterceptor = new TransactionInterceptor(sessionFactory);
+//            var transactionInterceptor = new TransactionInterceptor(sessionFactory);
+            var transactionInterceptor = new TransactionInterceptor(session);    //так надо для многопоточности
 
             var userService = new ByteBuddy()
                     .subclass(UserService.class)
@@ -61,9 +63,9 @@ public class HibernateRunner {
                     PersonalInfo.builder()
                             .firstname("Liza")
                             .lastname("Stepanova")
-//                            .birthDate(LocalDate.now())   //ошибка так как NotNull
+                            .birthDate(LocalDate.now())   //ошибка так как NotNull
                             .build(),
-                    "liza3@gmail.com",
+                    "liza5@gmail.com",
                     null,
 //                    null,
                     Role.USER,
